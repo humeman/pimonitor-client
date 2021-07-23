@@ -1,18 +1,14 @@
-# PiMonitor.client
+# PiMonitor client
 # Node configuration file
 
 # API url. No trailing slashes.
 #   EX: http://example.com:5000
-api_url: "http://207.244.252.28:6000" #gitignore
 
 # Node UUID. API key must have access to this.
-node_uuid: "60b74864-1a06-42ac-bc66-f37934b2bfa0" #gitignore
 
 # API key. Must have 'data' and 'settings' permission.
-api_key: "CZo3Q0UFr3aQ0N3mG.9mLBi0D9CYvjNq" #gitignore
 
 # Webhook URL for secondary reports.
-webhook_url: "https://discord.com/api/webhooks/854544918025732127/Q6S-5XC5TXuATP6fM4lGi0zJwNe_7Y_MPzev-6q1OQRne72h0PnG7QvRUKdWZQHXVRC3" #gitignore
 
 # Enable/disable messaging methods for each type.
 messages:
