@@ -1,0 +1,125 @@
+# PiMonitor.client
+# Node configuration file
+
+# API url. No trailing slashes.
+#   EX: http://example.com:5000
+api_url: "http://207.244.252.28:6000" #gitignore
+
+# Node UUID. API key must have access to this.
+node_uuid: "60b74864-1a06-42ac-bc66-f37934b2bfa0" #gitignore
+
+# API key. Must have 'data' and 'settings' permission.
+api_key: "CZo3Q0UFr3aQ0N3mG.9mLBi0D9CYvjNq" #gitignore
+
+# Webhook URL for secondary reports.
+webhook_url: "https://discord.com/api/webhooks/854544918025732127/Q6S-5XC5TXuATP6fM4lGi0zJwNe_7Y_MPzev-6q1OQRne72h0PnG7QvRUKdWZQHXVRC3" #gitignore
+
+# Enable/disable messaging methods for each type.
+messages:
+  # When a fault occurs (device crosses threshold)
+  exception:
+    sms: true
+    webhook: true
+    console: true
+
+    webhook_embed:
+      title: "An exception occurred!"
+      description: "```py\n%traceback%```"
+      fields:
+        - name: "Details"
+          value: |
+            **Function:** `%function%`
+            **Exception:** `%exception%`
+            **Message:** `%message%`
+
+      color: 0xff4141
+
+  error:
+    sms: true
+    webhook: true
+    console: true
+
+    webhook_embed:
+      title: "An error occurred!"
+      description: "```%type%\n%message%```"
+
+      color: 0xff4141
+  
+  # When an exception occurrs
+  fault:
+    sms: true
+    webhook: true
+    console: true
+
+    webhook_embed:
+      title: "A fault occurred!"
+      description: "%device% tripped event %event%\n%description%"
+      fields:
+        - name: "Details"
+          value: |
+            **Device:** `%device% (%device-uuid%)`
+            **Node:** `%node% (%node-uuid%)`
+
+      color: 0xff4141
+
+  # update:
+  #   sms: false
+  #   webhook: true
+  #   console: false
+
+  #   webhook_embed:
+  #     title: Today's data update
+  #     description: ":::for[%device]:::%name%: %data%"
+  #     color: 0x2f3136
+
+  start:
+    sms: false
+    webhook: true
+    console: false
+
+    webhook_embed:
+      title: "Node started!"
+      description: "```Node: %node% (%node-uuid%)```"
+      color: 0x43a047
+
+  stop:
+    sms: false
+    webhook: true
+    console: false
+
+    webhook_embed:
+      title: "Node stopped."
+      description: "```Node %node% (%node-uuid%)```"
+      color: 0xb71c1c
+
+  pause:
+    sms: true
+    webhook: true
+    console: true
+
+    webhook_embed:
+      title: "Node paused."
+      description: "```Node %node% (%node-uuid%)\nReason: %reason%```"
+      color: 0xffeb3b
+
+  unpause:
+    sms: true
+    webhook: true
+    console: true
+    
+    webhook_embed:
+      title: "Node unpaused."
+      description: "```Node %node% (%node-uuid%)\nReason: %reason%```"
+      color: 0xffeb3b
+
+# Enable/disable remote execution for debugging
+# This is dangerous. Don't turn this on if you're not debugging things,
+#   and never leave it on if you're connecting to an API on an open port
+#   or one that's going to be used by others.
+allow_exec: true # Python code execution
+allow_shell: true # Shell command execution
+
+# Timing delays in data loop
+delays:
+  device_info_refresh: 60
+  phone_cache_max: 3600
